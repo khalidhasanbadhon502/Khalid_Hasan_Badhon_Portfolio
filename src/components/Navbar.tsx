@@ -1,69 +1,73 @@
+import React, { useState } from 'react';
 import logo from '../assets/logo.png';
+import hamburgerImg from '../assets/hamburger.png';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const scrollToSection = (id: string) => {
+    setIsOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <nav className="bg-[#0A0F1D] text-white py-4 px-8 border-b border-gray-800/80 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        
-        <div className="flex-1 flex justify-start">
-          <a href="#home" className="flex items-center gap-3 group">
-            <img 
-              src={logo} 
-              alt="KHB Logo" 
-              className="h-9 w-auto object-contain" 
-            />
-            <span className="font-extrabold text-xl tracking-widest">
-              <span className="text-white">K</span>
-              <span className="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.3)]">HB</span>
-            </span>
-          </a>
-        </div>
+    <nav className="fixed top-0 left-0 w-full bg-[#0b1329]/90 backdrop-blur-md z-50 border-b border-cyan-500/10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* মোবাইল ভিউতে বামপাশে হ্যামবার্গার আইকন / ডেস্কটপে হিডেন */}
+          <div className="flex md:hidden">
+            <button 
+              onClick={() => setIsOpen(!isOpen)} 
+              className="p-1 focus:outline-none"
+            >
+              <img src={hamburgerImg} alt="Menu" className="w-7 h-7 object-contain filter invert" />
+            </button>
+          </div>
 
-        <div className="flex-1 flex justify-center">
-          <ul className="flex items-center gap-6 text-sm font-medium text-gray-300">
-            <li>
-              <a href="#home" className="hover:text-cyan-400 transition-colors">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#about" className="hover:text-cyan-400 transition-colors">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#services" className="hover:text-cyan-400 transition-colors">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="#expertise" className="hover:text-cyan-400 transition-colors">
-                Expertise
-              </a>
-            </li>
-            <li>
-              <a href="#projects" className="hover:text-cyan-400 transition-colors">
-                Projects
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-cyan-400 transition-colors">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="flex-1 flex justify-end">
-          <a
-            href="#contact"
-            className="hidden sm:inline-block px-4 py-2 text-xs font-semibold text-cyan-400 border border-cyan-500/40 rounded-lg hover:bg-cyan-500/10 transition-colors"
+          {/* ডেস্কটপ ভিউয়ের লোগো (বামপাশে) */}
+          <div 
+            onClick={() => scrollToSection('home')} 
+            className="hidden md:flex items-center space-x-2 cursor-pointer"
           >
-            Resume
-          </a>
-        </div>
+            <img src={logo} alt="Logo" className="w-8 h-8 rounded-full object-cover border border-cyan-500/40" />
+            <span className="text-xl font-extrabold tracking-wider text-cyan-400">KHB</span>
+          </div>
 
+          {/* মোবাইল ভিউয়ের লোগো + KHB (ডানপাশে) */}
+          <div 
+            onClick={() => scrollToSection('home')} 
+            className="flex md:hidden items-center space-x-2 cursor-pointer"
+          >
+            <span className="text-lg font-extrabold tracking-wider text-cyan-400">KHB</span>
+            <img src={logo} alt="Logo" className="w-7 h-7 rounded-full object-cover border border-cyan-500/40" />
+          </div>
+
+          {/* ডেস্কটপ মেনু */}
+          <div className="hidden md:flex items-center space-x-8">
+            <button onClick={() => scrollToSection('home')} className="text-gray-300 hover:text-cyan-400 text-sm font-medium transition">Home</button>
+            <button onClick={() => scrollToSection('about')} className="text-gray-300 hover:text-cyan-400 text-sm font-medium transition">About</button>
+            <button onClick={() => scrollToSection('services')} className="text-gray-300 hover:text-cyan-400 text-sm font-medium transition">Services</button>
+            <button onClick={() => scrollToSection('expertise')} className="text-gray-300 hover:text-cyan-400 text-sm font-medium transition">Expertise</button>
+            <button onClick={() => scrollToSection('projects')} className="text-gray-300 hover:text-cyan-400 text-sm font-medium transition">Projects</button>
+            <button onClick={() => scrollToSection('contact')} className="text-gray-300 hover:text-cyan-400 text-sm font-medium transition">Contact</button>
+          </div>
+        </div>
       </div>
+
+      {/* মোবাইল ড্রপডাউন মেনু */}
+      {isOpen && (
+        <div className="md:hidden bg-[#0b1329] border-b border-gray-800 px-4 pt-2 pb-4 space-y-2">
+          <button onClick={() => scrollToSection('home')} className="block w-full text-left px-3 py-2 text-gray-300 hover:text-cyan-400 text-sm font-medium">Home</button>
+          <button onClick={() => scrollToSection('about')} className="block w-full text-left px-3 py-2 text-gray-300 hover:text-cyan-400 text-sm font-medium">About</button>
+          <button onClick={() => scrollToSection('services')} className="block w-full text-left px-3 py-2 text-gray-300 hover:text-cyan-400 text-sm font-medium">Services</button>
+          <button onClick={() => scrollToSection('expertise')} className="block w-full text-left px-3 py-2 text-gray-300 hover:text-cyan-400 text-sm font-medium">Expertise</button>
+          <button onClick={() => scrollToSection('projects')} className="block w-full text-left px-3 py-2 text-gray-300 hover:text-cyan-400 text-sm font-medium">Projects</button>
+          <button onClick={() => scrollToSection('contact')} className="block w-full text-left px-3 py-2 text-gray-300 hover:text-cyan-400 text-sm font-medium">Contact</button>
+        </div>
+      )}
     </nav>
   );
 };
