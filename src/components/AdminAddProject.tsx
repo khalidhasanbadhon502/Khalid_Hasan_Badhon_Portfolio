@@ -16,7 +16,7 @@ const AdminAddProject: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/projects', {
+      const response = await fetch('https://khalid-hasan-badhon-be.onrender.com/api/projects', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

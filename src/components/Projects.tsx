@@ -19,7 +19,7 @@ export default function Projects() {
 
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:5000/api/projects', {
+      const response = await fetch('https://khalid-hasan-badhon-be.onrender.com/api/projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
