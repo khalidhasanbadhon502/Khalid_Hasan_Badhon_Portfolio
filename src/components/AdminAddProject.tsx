@@ -26,21 +26,20 @@ const AdminAddProject: React.FC = () => {
       });
 
       if (response.ok) {
-        alert('প্রজেক্ট সফলভাবে সেভ হয়েছে!');
+        alert('Project saved successfully!');
         setFormData({ title: '', description: '', tech: '', liveLink: '', githubLink: '' });
-        window.location.reload(); 
       } else {
-        alert('প্রজেক্ট সেভ করতে সমস্যা হয়েছে!');
+        alert('Failed to save project!');
       }
     } catch (error) {
       console.error('Error adding project:', error);
-      alert('ব্যাকএন্ড সার্ভারে কানেক্ট করা যাচ্ছে না!');
+      alert('Could not connect to the backend server!');
     }
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-[#131b2e] rounded-xl shadow-lg border border-cyan-500/20 my-8">
-      <h3 className="text-xl font-semibold text-white mb-4 text-center">Add New Project</h3>
+    <div className="max-w-xl mx-auto p-6 bg-[#131b2e] rounded-xl shadow-lg border border-cyan-500/20 my-8 text-white">
+      <h3 className="text-xl font-semibold mb-4 text-center text-cyan-400">Add New Project</h3>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-300">Project Title</label>
@@ -64,7 +63,7 @@ const AdminAddProject: React.FC = () => {
             onChange={handleChange}
             required
             className="w-full mt-1 p-2 bg-[#0a0f1d] border border-gray-700 rounded-md text-white focus:outline-none focus:border-cyan-400"
-            placeholder="e.g. React, Node.js, MongoDB, Tailwind"
+            placeholder="e.g. React, Node.js, MongoDB"
           />
         </div>
 
@@ -107,7 +106,7 @@ const AdminAddProject: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full py-2.5 px-4 bg-cyan-500 hover:bg-cyan-600 text-black font-semibold rounded-md transition duration-200"
+          className="w-full py-2.5 px-4 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold rounded-md transition duration-200"
         >
           Save Project
         </button>
