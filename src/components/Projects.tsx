@@ -14,13 +14,13 @@ interface ProjectItem {
 const myProjects: ProjectItem[] = [
   {
     id: '1',
-    title: 'JobPilotAI',
-    category: 'AI JOB MATCHING PLATFORM',
-    description: 'An AI-powered job matching platform featuring real-time matching algorithms, automated resume parsing, and role recommendation workflows for job seekers and employers.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-    tech: ['NEXT.JS', 'REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'VERCEL'],
+    title: 'Dev Stack Builder',
+    category: 'FULL-STACK WEB APPLICATION',
+    description: 'A modern full-stack web application built with React, TypeScript, Tailwind CSS, and Vite, deployed on Netlify.',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
+    tech: ['REACT', 'TYPESCRIPT', 'TAILWIND CSS', 'VITE', 'NETLIFY'],
     liveLink: 'https://example.com',
-    githubLink: 'https://github.com/username/jobpilot-ai'
+    githubLink: 'https://github.com/username/dev-stack-builder'
   }
 ];
 
