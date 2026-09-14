@@ -2,19 +2,27 @@ import { useState } from 'react';
 
 export default function Projects() {
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    title: '',
+    technologies: '',
+    description: '',
+    liveLink: '',
+    githubLink: '',
+  });
+
+  const handleChange = (e: any) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleProjectSubmit = async (e: any) => {
     e.preventDefault();
     
-    const form = e.currentTarget;
-    const title = form.title.value;
-    const technologies = form.technologies.value;
-    const description = form.description.value;
-
     const projectData = {
-      title,
-      technologies,
-      description,
+      title: formData.title,
+      tech: formData.technologies.split(',').map((item: string) => item.trim()),
+      description: formData.description,
+      liveLink: formData.liveLink,
+      githubLink: formData.githubLink,
     };
 
     try {
@@ -29,7 +37,7 @@ export default function Projects() {
 
       if (response.ok) {
         alert('Project added successfully!');
-        form.reset(); 
+        setFormData({ title: '', technologies: '', description: '', liveLink: '', githubLink: '' });
       } else {
         alert('Failed to add project');
       }
@@ -55,6 +63,8 @@ export default function Projects() {
               <input 
                 type="text" 
                 name="title" 
+                value={formData.title}
+                onChange={handleChange}
                 required
                 placeholder="e.g. Dev Stack Builder" 
                 className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white focus:outline-none focus:border-cyan-500"
@@ -66,6 +76,8 @@ export default function Projects() {
               <input 
                 type="text" 
                 name="technologies" 
+                value={formData.technologies}
+                onChange={handleChange}
                 required
                 placeholder="e.g. React, Node.js, MongoDB" 
                 className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white focus:outline-none focus:border-cyan-500"
@@ -76,11 +88,37 @@ export default function Projects() {
               <label className="block text-sm mb-1">Description</label>
               <textarea 
                 name="description" 
+                value={formData.description}
+                onChange={handleChange}
                 required
-                rows={4}
+                rows={3}
                 placeholder="Project details..." 
                 className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white focus:outline-none focus:border-cyan-500"
               ></textarea>
+            </div>
+
+            <div>
+              <label className="block text-sm mb-1">Live Link</label>
+              <input 
+                type="url" 
+                name="liveLink" 
+                value={formData.liveLink}
+                onChange={handleChange}
+                placeholder="https://example.com" 
+                className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white focus:outline-none focus:border-cyan-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm mb-1">GitHub Link</label>
+              <input 
+                type="url" 
+                name="githubLink" 
+                value={formData.githubLink}
+                onChange={handleChange}
+                placeholder="https://github.com/username/repo" 
+                className="w-full bg-slate-800 border border-slate-700 rounded p-2 text-white focus:outline-none focus:border-cyan-500"
+              />
             </div>
 
             <button 
