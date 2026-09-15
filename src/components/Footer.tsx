@@ -10,7 +10,7 @@ export default function Footer() {
 
         <div>
           <h4 className="font-bold mb-1">Email</h4>
-          <p className="text-slate-600 break-all">khalidhasanbadhon02@gmail.com</p>
+          <p className="text-slate-600 text-[11px] sm:text-xs whitespace-nowrap">khalidhasanbadhon02@gmail.com</p>
         </div>
 
         <div>
